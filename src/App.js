@@ -1,25 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './App.css';
+import { Navigation, Footer } from './components';
+import { BookEvent, ShowEvent } from './modules';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route component={() => <BookEvent />} exact path="/" />
+          <Route component={() => <ShowEvent />} exact path="/event" />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }
