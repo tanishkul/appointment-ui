@@ -1,43 +1,78 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
+  Button,
+} from '@material-ui/core';
+import { RoutesData } from '../RoutesData';
 
-const Navigation = (props) => {
-  const { location: { pathname } } = props;
+const useStyles = makeStyles(() => ({
+  header: {
+    backgroundColor: '#400CCC',
+    paddingRight: '79px',
+    paddingLeft: '118px',
+  },
+  logo: {
+    fontFamily: 'Work Sans, sans-serif',
+    fontWeight: 600,
+    color: '#FFFEFE',
+    textAlign: 'left',
+  },
+  menuButton: {
+    fontFamily: 'Open Sans, sans-serif',
+    fontWeight: 700,
+    size: '18px',
+    marginLeft: '38px',
+  },
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
+}));
+
+const Navigation = () => {
+  const {
+    header,
+    logo,
+    menuButton,
+    toolbar,
+  } = useStyles();
+
+  const websiteLogo = (
+    <Typography className={logo} component="h1" variant="h6">
+      Appointment Booking App
+    </Typography>
+  );
+
+  const getMenuButtons = () => RoutesData.map(({ label, href }) => (
+    <Button
+      {...{
+        key: label,
+        color: 'inherit',
+        to: href,
+        component: RouterLink,
+        className: menuButton
+      }}
+    >
+      {label}
+    </Button>
+  ));
+
+  const displayDesktop = () => (
+    <Toolbar className={toolbar}>
+      {websiteLogo}
+      <div>{getMenuButtons()}</div>
+    </Toolbar>
+  );
+
   return (
-    <div className="navigation">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="container">
-          <Link class="navbar-brand" to="/">
-            Appointment Booking Website
-          </Link>
-
-          <div>
-            <ul className="navbar-nav ml-auto">
-              <li
-                className={`nav-item  ${
-                  pathname === '/' ? 'active' : ''
-                }`}
-              >
-                <Link class="nav-link" to="/">
-                  Book an Appointment
-                  <span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li
-                className={`nav-item  ${
-                  pathname === '/event' ? 'active' : ''
-                }`}
-              >
-                <Link class="nav-link" to="/event">
-                  View Appointment
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <header>
+      <AppBar className={header}>{displayDesktop()}</AppBar>
+    </header>
   );
 }
 
-export default withRouter(Navigation);
+export default Navigation;

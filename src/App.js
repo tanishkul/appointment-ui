@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { Navigation, Footer } from './components';
+import { Navigation } from './components';
 import { BookEvent, ShowEvent } from './modules';
 
 function App() {
@@ -11,9 +11,8 @@ function App() {
         <Navigation />
         <Switch>
           <Route component={() => <BookEvent />} exact path="/" />
-          <Route component={() => <ShowEvent />} exact path="/event" />
+          <Route component={() => <ShowEvent />} exact path="/events" />
         </Switch>
-        <Footer />
       </Router>
     </div>
   );
