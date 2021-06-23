@@ -8,6 +8,9 @@ This is the user interface of Appointment Booking App. I have used Reactjs and m
 
 2. **View Appointment** : User can get the booked appointments of a particular date range.
 
+## Deployed App
+**https://tanishkul.github.io/appointment-ui/#/**<br>
+
 ## Running Locally
 
 **Step 1:** Make sure you have [Node.js](http://nodejs.org/) installed.
